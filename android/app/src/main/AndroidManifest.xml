@@ -2,6 +2,7 @@
     <uses-feature android:name="android.hardware.CAMERA" android:required="true" />
     <uses-feature android:name="android.hardware.camera.AUTOFOCUS" android:required="false" />
     <uses-feature android:name="android.hardware.camera.FLASH" android:required="false" />
+    <uses-permission android:name="android.permission.INTERNET" />
 
     <application
         android:label="luxury_project"
