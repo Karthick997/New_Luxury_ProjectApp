@@ -25,6 +25,7 @@ class _AnimatedGradientScreenState extends State<AnimatedGradientScreen> {
       });
     });
   }
+
   @override
   void dispose() {
     _timer.cancel();
@@ -32,7 +33,7 @@ class _AnimatedGradientScreenState extends State<AnimatedGradientScreen> {
   }
 
   Widget build(BuildContext context) {
-    return  AnimatedContainer(
+    return AnimatedContainer(
       duration: const Duration(seconds: 2),
       decoration: BoxDecoration(
         gradient: LinearGradient(

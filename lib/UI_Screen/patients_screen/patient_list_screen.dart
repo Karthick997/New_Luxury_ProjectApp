@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:luxury_project/UI_Screen/patients_screen/patient_details_screen.dart';
 import 'package:luxury_project/widget/constant.dart';
 import 'package:luxury_project/widget/small_text.dart';
 import 'package:luxury_project/widget/string.dart';
@@ -112,7 +113,7 @@ class PatientListScreen extends StatelessWidget {
                   Navigator.push(
                     context,
                     MaterialPageRoute(
-                        builder: (context) => const ImageUploadScreen()),
+                        builder: (context) => const PatientDetailsScreen()),
                   );
                 },
                 child: ListView.builder(

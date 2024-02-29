@@ -174,46 +174,45 @@ class _ImageUploadScreenState extends State<ImageUploadScreen> {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      backgroundColor: const Color(0xffFFFBF3),
-      appBar: AppBar(
-        leading: InkWell(
-            onTap: () {
-              Navigator.push(
-                context,
-                MaterialPageRoute(builder: (context) => PatientListScreen()),
-              );
-            },
-            child: const Icon(
-              Icons.arrow_back_ios,
-              color: Color(0xff1C1B1F),
-              size: 20,
-            )),
-        backgroundColor: primaryColor,
-        title: Text(
-          "Upload",
-          style: TextStyle(
-              fontFamily: "Poppins",
-              color: blackColor,
-              fontSize: 20,
-              fontWeight: FontWeight.w500),
-        ),
-      ),
-      body: Padding(
-        padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 20),
+    return
+      // backgroundColor: const Color(0xffFFFBF3),
+      // appBar: AppBar(
+      //   leading: InkWell(
+      //       onTap: () {
+      //         Navigator.push(
+      //           context,
+      //           MaterialPageRoute(builder: (context) => PatientListScreen()),
+      //         );
+      //       },
+      //       child: const Icon(
+      //         Icons.arrow_back_ios,
+      //         color: Color(0xff1C1B1F),
+      //         size: 20,
+      //       )),
+      //   backgroundColor: primaryColor,
+      //   title: Text(
+      //     "Upload",
+      //     style: TextStyle(
+      //         fontFamily: "Poppins",
+      //         color: blackColor,
+      //         fontSize: 20,
+      //         fontWeight: FontWeight.w500),
+      //   ),
+      // ),
+      SingleChildScrollView(
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             PatientDetailsPage(),
             const SizedBox(height: 10),
-            const Text(
-              "Please ensure the details",
-              style: TextStyle(
-                  fontFamily: "Poppins",
-                  color: Color(0xff172D2B),
-                  fontSize: 16,
-                  fontWeight: FontWeight.w500),
-            ),
+            // const Text(
+            //   "Please ensure the details",
+            //   style: TextStyle(
+            //       fontFamily: "Poppins",
+            //       color: Color(0xff172D2B),
+            //       fontSize: 16,
+            //       fontWeight: FontWeight.w500),
+            // ),
             const SizedBox(
               height: 20,
             ),
@@ -418,7 +417,8 @@ class _ImageUploadScreenState extends State<ImageUploadScreen> {
                 ),
               ],
             ),
-            const Spacer(),
+            SizedBox(height: 40,),
+            // const Spacer(),
             Center(
               child: GestureDetector(
                 onTap: () {
@@ -459,12 +459,8 @@ class _ImageUploadScreenState extends State<ImageUploadScreen> {
                 ),
               ),
             ),
-            const SizedBox(
-              height: 30,
-            ),
           ],
         ),
-      ),
-    );
+      );
   }
 }

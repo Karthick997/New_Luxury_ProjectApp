@@ -6,7 +6,6 @@ import 'package:shared_preferences/shared_preferences.dart';
 import 'dart:async';
 import '../widget/constant.dart';
 import 'package:http/http.dart' as http;
-
 import 'animated_screen.dart';
 
 
@@ -33,8 +32,8 @@ Future<void>_performLogin(
       if (data['status'] == 'success') {
         final prefs = await SharedPreferences.getInstance();
         await prefs.setString('phone', phone);
+        print(phone);
         await prefs.setString('password', password);
-
         Navigator.pushReplacement(
           context,
           MaterialPageRoute(builder: (context) => BottomNavigationBarScreen()),
@@ -233,7 +232,7 @@ class _SignInScreenState extends State<SignInScreen> {
                             child: Center(
                               child: _isLoading
                                   ? CircularProgressIndicator(
-                                      valueColor: AlwaysStoppedAnimation<Color>(
+                                      valueColor: AlwaysStoppedAnimation(
                                           Color(0xffEACF97)),
                                     )
                                   : Container(
