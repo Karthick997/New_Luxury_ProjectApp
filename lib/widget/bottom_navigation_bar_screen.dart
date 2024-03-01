@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:luxury_project/widget/add_prescription_screen.dart';
+import 'package:luxury_project/widget/profile_screen.dart';
 import '../UI_Screen/patients_screen/patient_list_screen.dart';
 import 'home_screen.dart';
 
@@ -22,7 +22,7 @@ class _BottomNavigationBarScreenState extends State<BottomNavigationBarScreen> {
     _pages = [
        HomeScreen(),
       PatientListScreen(),
-      const AddPrescriptionScreen(),
+      const ProfileScreen(),
     ];
   }
 

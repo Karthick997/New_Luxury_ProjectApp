@@ -337,7 +337,7 @@ class HomeScreen extends StatelessWidget {
                         boxShadow: [
                           BoxShadow(
                             color: primaryColor,
-                            blurRadius: 2, // soften the shadow
+                            blurRadius: 1.5, // soften the shadow
                             spreadRadius: 0.5, //extend the shadow
                             offset: Offset(
                               0.5, // Move to right 5  horizontally

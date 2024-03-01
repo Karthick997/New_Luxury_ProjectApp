@@ -45,6 +45,30 @@ class MyStrings{
   static const String  aMRoutine = 'AM Routine';
   static const String  pMRoutine = 'PM Routine';
   static const String  add = 'Add';
+  static const String  drAaronFinch = 'Dr. Aaron Finch';
+  static const String  dermatologist = 'Dermatologist';
+  static const String  noOfExperience = '8+';
+  static const String  experience = 'Experience';
+  static const String  noOfAwards = '7';
+  static const String  awards = 'Awards';
+  static const String  biography = 'Biography';
+  static const String  contactInfo = 'Contact info';
+  static const String  email = 'Email';
+  static const String  gmail = 'aronfinch007@gmail.com';
+  static const String  registration = 'Registration';
+  static const String  phone = 'phone';
+  static const String  phoneNo = '908034122';
+  static const String  postalCode = 'Postal Code';
+  static const String  postalCodeNo= '123345';
+  static const String  city= 'City';
+  static const String  chennai= 'Chennai';
+  static const String  state= 'State';
+  static const String  tamilNadu= 'TamilNadu';
+  static const String  country= 'Country';
+  static const String  india= 'India';
+  static const String  addressForProfile= '21, Sabari Street, Nesapakkam';
+  static const String  addressForProfile2= 'K.K. Nagar West, Chennai';
+  static const String  birthday= 'Birthday';
 
 
 

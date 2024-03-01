@@ -5,7 +5,8 @@ import 'package:luxury_project/UI_Screen/patients_screen/prescription_screen.dar
 import 'package:luxury_project/widget/constant.dart';
 import 'package:luxury_project/widget/small_text.dart';
 import 'package:luxury_project/widget/string.dart';
-import '../../widget/add_prescription_screen.dart';
+import '../../widget/profile_screen.dart';
+import 'add_prescription.dart';
 import 'image_upload_screen.dart';
 import 'medical_recards.dart';
 
@@ -31,7 +32,7 @@ class _PatientDetailsScreenState extends State<PatientDetailsScreen> {
               double screenHeight = MediaQuery.of(context).size.height;
               double bottomSheetHeight = screenHeight * 0.75;
               showModalBottomSheet(
-                backgroundColor: Color(0xffFFF7E5),
+                backgroundColor: Colors.white,
                 context: context,
                 isScrollControlled: true,
                 builder: (BuildContext context) {
@@ -85,7 +86,7 @@ class _PatientDetailsScreenState extends State<PatientDetailsScreen> {
                 double screenHeight = MediaQuery.of(context).size.height;
                 double bottomSheetHeight = screenHeight * 0.75;
                 showModalBottomSheet(
-                  backgroundColor: Color(0xffFFF7E5),
+                  backgroundColor: Colors.white,
                   context: context,
                   isScrollControlled: true,
                   builder: (BuildContext context) {
@@ -164,10 +165,12 @@ class _PatientDetailsScreenState extends State<PatientDetailsScreen> {
                     borderRadius: BorderRadius.circular(32),
                     color: Color(0xffFFF6D8)),
                 child: Row(
+                  // mainAxisAlignment: MainAxisAlignment.spaceAround,
+                  // mainAxisAlignment: MainAxisAlignment.center,
                   children: [
-                    Image.asset("asset/image/patient.png"),
+                    Image.asset("asset/image/doctorprofile.png"),
                     SizedBox(
-                      width: 20,
+                      width: 40,
                     ),
                     Column(
                       crossAxisAlignment: CrossAxisAlignment.start,
@@ -252,7 +255,7 @@ class _PatientDetailsScreenState extends State<PatientDetailsScreen> {
               child: DefaultTabController(
                 length: 3,
                 child: CustomScrollView(
-                  physics: BouncingScrollPhysics(),
+                  // physics: BouncingScrollPhysics(),
                   slivers: [
                     SliverAppBar(
                       backgroundColor: Color(0xffFFF7E5),

@@ -13,6 +13,7 @@ int limit = 20;
 
 // Color
 Color primaryColor = const Color(0xffEACF97);
+Color secondaryColor = const Color(0xffE9CE96);
 Color whiteColor = Colors.white;
 Color textColor =  const Color(0xff767977);
 Color blackColor =  Colors.black;

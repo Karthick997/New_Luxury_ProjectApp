@@ -422,11 +422,11 @@ class _ImageUploadScreenState extends State<ImageUploadScreen> {
             Center(
               child: GestureDetector(
                 onTap: () {
-                  if (_beforeImagePath == null || _afterImagePath == null) {
+                  if (_beforeImagePath == null ) {
                     ScaffoldMessenger.of(context).showSnackBar(
                       const SnackBar(
                           content: Text(
-                        'Please upload both images',
+                        'Please add any image you may have.',
                         style: TextStyle(fontFamily: MyStrings.poppins),
                       )),
                     );
@@ -435,10 +435,28 @@ class _ImageUploadScreenState extends State<ImageUploadScreen> {
                       context,
                       MaterialPageRoute(
                           builder: (context) =>
+                          const BottomNavigationBarScreen()),
+                    );
+                  }
+                  if (_afterImagePath == null ) {
+                    ScaffoldMessenger.of(context).showSnackBar(
+                      const SnackBar(
+                          content: Text(
+                            'Please add any image you may have.',
+                            style: TextStyle(fontFamily: MyStrings.poppins),
+                          )),
+                    );
+                  }
+                  else {
+                    Navigator.push(
+                      context,
+                      MaterialPageRoute(
+                          builder: (context) =>
                               const BottomNavigationBarScreen()),
                     );
                   }
                 },
+
                 child: Container(
                   height: 44,
                   width: 121,
