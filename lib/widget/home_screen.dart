@@ -1,8 +1,13 @@
+import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:fluttertoast/fluttertoast.dart';
+import 'package:luxury_project/UI_Screen/signin_screen.dart';
 import 'package:luxury_project/widget/constant.dart';
 import 'package:luxury_project/widget/string.dart';
 import '../UI_Screen/calender_page.dart';
+import '../service/loader.dart';
+import '../service/service.dart';
 
 class DoctorList {
   final String imagepath;
@@ -26,7 +31,14 @@ class AppointmentList {
   });
 }
 
-class HomeScreen extends StatelessWidget {
+class HomeScreen extends StatefulWidget {
+  HomeScreen({Key? key}) : super(key: key);
+
+  @override
+  State<HomeScreen> createState() => _HomeScreenState();
+}
+
+class _HomeScreenState extends State<HomeScreen> {
   final List<DoctorList> doctorList = [
     DoctorList(
       imagepath: "asset/image/doctor1.png",
@@ -53,6 +65,7 @@ class HomeScreen extends StatelessWidget {
       name: "Dr.Perry  ",
     ),
   ];
+
   final List<AppointmentList> appointmentList = [
     AppointmentList(
         numberOfCases: "Case 01",
@@ -84,7 +97,6 @@ class HomeScreen extends StatelessWidget {
       date: "18 may 2024",
     ),
   ];
-  HomeScreen({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -150,8 +162,14 @@ class HomeScreen extends StatelessWidget {
                           color: Color(0xff1C1B1F),
                           size: 25,
                         )),
-                    SizedBox(width: 20,),
-                    Icon(Icons.logout_outlined)
+                    SizedBox(
+                      width: 20,
+                    ),
+                    IconButton(
+                        onPressed: () {
+                          _logOut(context);
+                        },
+                        icon: Icon(Icons.logout_outlined)),
                   ],
                 ),
                 const SizedBox(
@@ -191,8 +209,8 @@ class HomeScreen extends StatelessWidget {
                         fontWeight: FontWeight.w400,
                         fontSize: 18,
                         color: Color(0xff8E8D8D)),
-                    contentPadding: const EdgeInsets.symmetric(
-                        vertical: 8, horizontal: 8),
+                    contentPadding:
+                        const EdgeInsets.symmetric(vertical: 8, horizontal: 8),
                   ),
                 ),
                 const SizedBox(
@@ -487,8 +505,7 @@ class HomeScreen extends StatelessWidget {
                                               fontSize: 10,
                                               fontFamily: MyStrings.poppins,
                                               color: Color(0xff000000))),
-                                      const Icon(Icons.arrow_forward,
-                                          size: 12)
+                                      const Icon(Icons.arrow_forward, size: 12)
                                     ],
                                   ),
                                 ),
@@ -506,5 +523,47 @@ class HomeScreen extends StatelessWidget {
         ),
       ),
     );
+  }
+
+  _logOut(BuildContext context) async {
+    startLoader();
+    Webservice().callLogOutService(context).then((onResponse) async {
+      stopLoader();
+      if (onResponse != null) {
+        if (kDebugMode) {
+          print(onResponse.success);
+        }
+        if (onResponse.success == true) {
+          await Future.delayed(const Duration(seconds: 2));
+          Future.microtask(() {
+            Navigator.pushAndRemoveUntil(
+              context,
+              MaterialPageRoute(
+                  builder: (BuildContext context) => const SignInScreen()),
+                  (route) => false,
+            );
+          });
+          Fluttertoast.showToast(msg: 'Logout Successfully');
+
+
+        } else {
+          Fluttertoast.showToast(msg: "Failed to logout");
+        }
+      }
+    }).catchError((error) {
+      stopLoader();
+      if (kDebugMode) {
+        print(error);
+      }
+    });
+  }
+
+
+  startLoader() {
+    LoadingDialog.showLoaderDialog(context, 'Please Wait..');
+  }
+
+  stopLoader() {
+    Navigator.of(context).pop();
   }
 }

@@ -11,7 +11,7 @@ class ProfileScreen extends StatelessWidget {
     return Scaffold(
       appBar: AppBar(
         backgroundColor: const Color(0xffFFFBF3),
-        automaticallyImplyLeading: true,
+        automaticallyImplyLeading: false,
       ),
       backgroundColor: const Color(0xffFFFBF3),
       body: Padding(
@@ -207,10 +207,20 @@ class ProfileScreen extends StatelessWidget {
                               height: 74,
                               width: 150,
                               decoration: BoxDecoration(
-                                  border: Border.all(
-                                    color: secondaryColor,
-                                  ),
-                                  borderRadius: BorderRadius.circular(9)),
+                                  boxShadow: [
+                                    BoxShadow(
+                                      color: Color(0xffE7D682),
+                                      blurRadius: 0.8,
+                                      spreadRadius: 0.8,
+                                      offset: Offset(
+                                        0.5,
+                                        0.5,
+                                      ),
+                                    )
+                                  ],
+                                  border: Border.all(color: primaryColor, width: 0.3),
+                                  borderRadius: BorderRadius.circular(8),
+                                  color: const Color(0xffFFFFFF)),
                             ),
                             // SizedBox(width: 30,),
                             Container(
@@ -250,10 +260,20 @@ class ProfileScreen extends StatelessWidget {
                               height: 74,
                               width: 150,
                               decoration: BoxDecoration(
-                                  border: Border.all(
-                                    color: secondaryColor,
-                                  ),
-                                  borderRadius: BorderRadius.circular(9)),
+                                  boxShadow: [
+                                    BoxShadow(
+                                      color: Color(0xffE7D682),
+                                      blurRadius: 0.8,
+                                      spreadRadius: 0.8,
+                                      offset: Offset(
+                                        0.5,
+                                        0.5,
+                                      ),
+                                    )
+                                  ],
+                                  border: Border.all(color: primaryColor, width: 0.3),
+                                  borderRadius: BorderRadius.circular(8),
+                                  color: const Color(0xffFFFFFF)),
                             ),
                           ],
                         ),
@@ -261,6 +281,23 @@ class ProfileScreen extends StatelessWidget {
                           height: 15,
                         ),
                         Container(
+                          width: MediaQuery.of(context).size.width,
+                          height: 220,
+                          decoration: BoxDecoration(
+                              boxShadow: [
+                                BoxShadow(
+                                  color: Color(0xffE7D682),
+                                  blurRadius: 1,
+                                  spreadRadius:1,
+                                  offset: Offset(
+                                    0.5,
+                                    0.5,
+                                  ),
+                                )
+                              ],
+                              border: Border.all(color: primaryColor, width: 1),
+                              borderRadius: BorderRadius.circular(8),
+                              color: const Color(0xffFFFFFF)),
                           padding: EdgeInsets.all(15),
                           child: Column(
                             children: [
@@ -448,13 +485,8 @@ class ProfileScreen extends StatelessWidget {
                               ),
                             ],
                           ),
-                          width: MediaQuery.of(context).size.width,
-                          height: 220,
-                          decoration: BoxDecoration(
-                            border: Border.all(color: secondaryColor),
-                            borderRadius: BorderRadius.circular(9),
+
                           ),
-                        )
                       ],
                     )
                   ],

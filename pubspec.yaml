@@ -43,6 +43,10 @@ dependencies:
   shared_preferences:
   scrollable_list_tabview:
   flutter_speed_dial:
+  flutter_secure_storage: ^8.0.0
+  fluttertoast:
+  flutter_spinkit: ^5.1.0
+
 
 
 

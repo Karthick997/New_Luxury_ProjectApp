@@ -38,39 +38,33 @@ class _BottomNavigationBarScreenState extends State<BottomNavigationBarScreen> {
           });
         },
       ),
-      bottomNavigationBar: Padding(
-        padding: const EdgeInsets.all(15),
-        child: ClipRRect(
-          borderRadius: BorderRadius.circular(39),
-          child: BottomNavigationBar(
-            backgroundColor: Color(0xffFFF0CA),
-            currentIndex: _currentIndex,
-            selectedItemColor: Color(0xff172D2B),
-            unselectedItemColor: Color(0xff6F6F6F),
-            onTap: (index) {
-              setState(() {
-                _currentIndex = index;
-                _pageController.animateToPage(index,
-                    duration: const Duration(milliseconds: 300), curve: Curves.ease);
-              });
-            },
-            items: [
-              BottomNavigationBarItem(
-                icon: Icon(Icons.home),
-                label: 'Home',
+      bottomNavigationBar: BottomNavigationBar(
+        backgroundColor: Color(0xffFFF0CA),
+        currentIndex: _currentIndex,
+        selectedItemColor: Color(0xff172D2B),
+        unselectedItemColor: Color(0xff6F6F6F),
+        onTap: (index) {
+          setState(() {
+            _currentIndex = index;
+            _pageController.animateToPage(index,
+                duration: const Duration(milliseconds: 300), curve: Curves.ease);
+          });
+        },
+        items: [
+          BottomNavigationBarItem(
+            icon: Icon(Icons.home),
+            label: 'Home',
 
-              ),
-              BottomNavigationBarItem(
-                icon: Icon(Icons.grid_view_outlined),
-                label: 'Patient',
-              ),
-              BottomNavigationBarItem(
-                icon: Icon(Icons.person_outline_outlined),
-                label: 'Profile',
-              ),
-            ],
           ),
-        ),
+          BottomNavigationBarItem(
+            icon: Icon(Icons.grid_view_outlined),
+            label: 'Patient',
+          ),
+          BottomNavigationBarItem(
+            icon: Icon(Icons.person_outline_outlined),
+            label: 'Profile',
+          ),
+        ],
       ),
 
     );

@@ -5,7 +5,6 @@ import 'package:luxury_project/UI_Screen/patients_screen/prescription_screen.dar
 import 'package:luxury_project/widget/constant.dart';
 import 'package:luxury_project/widget/small_text.dart';
 import 'package:luxury_project/widget/string.dart';
-import '../../widget/profile_screen.dart';
 import 'add_prescription.dart';
 import 'image_upload_screen.dart';
 import 'medical_recards.dart';

@@ -1,11 +1,11 @@
-class LogIn {
+class LogInModel {
   String? status;
   User? user;
   Authorization? authorization;
 
-  LogIn({this.status, this.user, this.authorization});
+  LogInModel({this.status, this.user, this.authorization});
 
-  LogIn.fromJson(Map<String, dynamic> json) {
+  LogInModel.fromJson(Map<String, dynamic> json) {
     status = json['status'];
     user = json['user'] != null ? new User.fromJson(json['user']) : null;
     authorization = json['authorization'] != null

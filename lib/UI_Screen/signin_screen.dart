@@ -1,59 +1,22 @@
 import 'dart:convert';
+import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:fluttertoast/fluttertoast.dart';
 import 'package:luxury_project/widget/bottom_navigation_bar_screen.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'dart:async';
+import '../service/loader.dart';
+import '../service/service.dart';
 import '../widget/constant.dart';
 import 'package:http/http.dart' as http;
 import 'animated_screen.dart';
-
 
 class SignInScreen extends StatefulWidget {
   const SignInScreen({Key? key}) : super(key: key);
 
   @override
   State<SignInScreen> createState() => _SignInScreenState();
-}
-
-Future<void>_performLogin(
-    BuildContext context, String phone, String password) async {
-  try {
-    final response = await http.post(
-      Uri.parse('https://luxuryderm.in/api/login'),
-      body: {
-        'phone': phone,
-        'password': password,
-      },
-    );
-    if (response.statusCode == 200) {
-      var data = jsonDecode(response.body.toString());
-      print(data);
-      if (data['status'] == 'success') {
-        final prefs = await SharedPreferences.getInstance();
-        await prefs.setString('phone', phone);
-        print(phone);
-        await prefs.setString('password', password);
-        Navigator.pushReplacement(
-          context,
-          MaterialPageRoute(builder: (context) => BottomNavigationBarScreen()),
-        );
-        return;
-      }
-    }
-    ScaffoldMessenger.of(context).showSnackBar(
-      SnackBar(
-        content: Text('Login Failed Please check your credentials'),
-      ),
-    );
-  } catch (e) {
-    print('Error: $e');
-    ScaffoldMessenger.of(context).showSnackBar(
-      SnackBar(
-        content: Text('An error occurred Please try again later'),
-      ),
-    );
-  }
 }
 
 class _SignInScreenState extends State<SignInScreen> {
@@ -63,7 +26,6 @@ class _SignInScreenState extends State<SignInScreen> {
   bool _isLoading = false;
 
   @override
-
   Widget build(BuildContext context) {
     return Scaffold(
       resizeToAvoidBottomInset: false,
@@ -213,20 +175,8 @@ class _SignInScreenState extends State<SignInScreen> {
                                   ),
                                 );
                               } else {
-                                setState(() {
-                                  _isLoading = true; // Show loader
-                                });
-                                try {
-                                  await _performLogin(
-                                    context,
-                                    _phoneNumberController.text,
-                                    _passwordController.text,
-                                  );
-                                } finally {
-                                  setState(() {
-                                    _isLoading = false; // Hide loader
-                                  });
-                                }
+                                _login(context, _phoneNumberController.text, _passwordController.text);
+
                               }
                             },
                             child: Center(
@@ -267,4 +217,91 @@ class _SignInScreenState extends State<SignInScreen> {
       ),
     );
   }
+  _login(BuildContext context,String phoneNumber,String password) async {
+    // networkStatus().then((isReachable) {
+    // if (isReachable!) {
+
+    startLoader();
+
+    Webservice().callLoginService(context,phone: phoneNumber, password: password)
+        .then((onResponse) async {
+      stopLoader();
+      if (kDebugMode) {
+        print(onResponse!.status);
+        print("authorization${onResponse.authorization?.token}");
+      }
+      if (onResponse!.status == "success") {
+        SharedPreferences prefs = await SharedPreferences.getInstance();
+                await prefs.setString('phone', phoneNumber);
+                await prefs.setString('password', password);
+                await prefs.setString('authorization', onResponse.authorization?.token ??'');
+
+        await Future.delayed(const Duration(milliseconds: 800));
+        Navigator.pushReplacement(
+          context,
+          MaterialPageRoute(
+              builder: (context) => BottomNavigationBarScreen()),
+        );
+      } else {
+        Fluttertoast.showToast(msg: "Failed to Login");
+      }
+    }).catchError((error) async {
+      Fluttertoast.showToast(msg: "Time Out");
+      stopLoader();
+      if (kDebugMode) {
+        print(error);
+      }
+    });
+  }
+
+  startLoader() {
+    LoadingDialog.showLoaderDialog(context, 'Please Wait..');
+  }
+
+  stopLoader() {
+    Navigator.of(context).pop();
+  }
+
+  // Future<String?> LogOut(
+  //     BuildContext context,) async {
+  //   final prefs = await SharedPreferences.getInstance();
+  //   final token = prefs.getString('authorization');
+  //   try {
+  //     final response = await http.post(
+  //       Uri.parse('https://luxuryderm.in/api/logout'),
+  //       body: {'token': token},
+  //     );
+  //     if (response.statusCode == 200) {
+  //       var data = jsonDecode(response.body.toString());
+  //       print('User created at: ${data['user']['created_at']}');
+  //       var accessToken = data['authorization']['token'];
+  //       print("accessToken $accessToken");
+  //       print(data);
+  //       if (data['status'] == 'success') {
+  //         Navigator.pushReplacement(
+  //           context,
+  //           MaterialPageRoute(
+  //               builder: (context) => SignInScreen()),
+  //         );
+  //         return data['token'];
+  //       }
+  //     }
+  //     ScaffoldMessenger.of(context).showSnackBar(
+  //       SnackBar(
+  //         content: Text('Login Failed Please check your credentials.'),
+  //       ),
+  //     );
+  //   } catch (e) {
+  //     print('Error: $e');
+  //     ScaffoldMessenger.of(context).showSnackBar(
+  //       SnackBar(
+  //         content: Text('An error occurred Please try again later.'),
+  //       ),
+  //     );
+  //   }
+  //   return null;
+  // }
+
+
+
 }

@@ -439,13 +439,13 @@ class _ImageUploadScreenState extends State<ImageUploadScreen> {
                     );
                   }
                   if (_afterImagePath == null ) {
-                    ScaffoldMessenger.of(context).showSnackBar(
-                      const SnackBar(
-                          content: Text(
-                            'Please add any image you may have.',
-                            style: TextStyle(fontFamily: MyStrings.poppins),
-                          )),
-                    );
+                    // ScaffoldMessenger.of(context).showSnackBar(
+                    //   const SnackBar(
+                    //       content: Text(
+                    //         'Please add any image you may have.',
+                    //         style: TextStyle(fontFamily: MyStrings.poppins),
+                    //       )),
+                    // );
                   }
                   else {
                     Navigator.push(
